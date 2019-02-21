@@ -11,7 +11,7 @@ export const getAllRoutesIndices = (routes: Route[]): number[] =>
     .map((branch: Route) => getRouteIndices(branch))
     .reduce((ids: number[], moreIds: number[]) => [...ids, ...moreIds], [])
 
-export const printRoutes = (routes: Route[]): string =>
+export const getRoutesAsString = (routes: Route[]): string =>
     routes
         .map((branch: Route) => branch.toString())
         .reduce((acc: string, branchString: string) => `${acc} \n${branchString}`, '')

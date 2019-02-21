@@ -2,18 +2,18 @@ import logger from './helpers/logger'
 import Booking from './models/Booking'
 import Route from './models/Route'
 import { convertInputDataToBookings, removeBookings } from './helpers/bookings-helper'
-import { getAllRoutesIndices, printRoutes } from './helpers/routes-helper'
+import { getAllRoutesIndices, getRoutesAsString } from './helpers/routes-helper'
 
 let lengthOfLongestRoute: number = 0
 let longestRouteIndex: number = -1
 
-export const arrangeBookings = (data: any): number[] | void => {
+export const arrangeBookings = (data: any): number[] => {
     const allRoutes: Route[] = []
     const allBookings: Booking[] = convertInputDataToBookings(data)
 
     if (!allBookings.length) {
         logger.warn('No bookings provided.')
-        return
+        return []
     }
 
     createRoute(allBookings, allRoutes)
@@ -93,7 +93,7 @@ const resetGlobalVariables = (): void => {
 
 const logResults = (allRoutes: Route[]): void => {
     logger.info(`
-        \nRoutes found: ${printRoutes(allRoutes)}
+        \nRoutes found: ${getRoutesAsString(allRoutes)}
         \nRelocations required: ${allRoutes.length - 1}
     `)
 }

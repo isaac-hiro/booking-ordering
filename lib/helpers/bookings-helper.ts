@@ -1,5 +1,4 @@
 import Booking from '../models/Booking'
-import Route from '../models/Route'
 
 import logger from './logger'
 

@@ -53,7 +53,7 @@ Endpoint responds with an array of ordered bookings id-s:
 
 Run all tests
 
-	npm run tests
+	npm run test
 	
 Run Unit tests
 
