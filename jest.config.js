@@ -13,7 +13,7 @@ module.exports = {
     coveragePathIgnorePatterns: [
         '<rootDir>/node_modules',
         '<rootDir>/test',
-        '<rootDir>/lib/index.ts',
+        '<rootDir>/lib/server.ts',
         '<rootDir>/lib/config'
     ],
     coverageDirectory: './test/reports/jest',

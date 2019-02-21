@@ -46,7 +46,7 @@ describe('BookingOrdering service', () => {
             .set('Accept', 'application/json')
             .expect(200)
 
-        expect(response.body).toEqual([1, 2, 3, 7, 5, 8, 13, 14, 9, 10, 4, 6, 11, 12, 15, 16])
+        expect(response.body).toEqual([15, 16, 17, 1, 2, 3, 7, 5, 8, 13, 14, 9, 10, 4, 6, 11, 18, 12])
     })
 
     test('should return an arary of id-s if valid JSON data is given and exclude invalid bookings', async () => {
@@ -57,7 +57,7 @@ describe('BookingOrdering service', () => {
             .set('Accept', 'application/json')
             .expect(200)
 
-        expect(response.body).toEqual([5, 4, 1, 6, 7])
+        expect(response.body).toEqual([1, 4, 5, 6, 7])
     })
 
     test('should return an empty array if all bookings are invalid', async () => {

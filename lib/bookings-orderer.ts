@@ -48,24 +48,28 @@ const getLongestRoute = (allBookings: Booking[]): Route => {
 }
 
 const createPossibleRoute = (route: Route, allBookings: Booking[], allPossibleRoutes: Route[]): void => {
-    const localAllBookings: Booking[] = removeBookings(allBookings, route.getAllBookings())
+    const bookingsWithoutRouteBookings: Booking[] = removeBookings(allBookings, route.getAllBookings())
     const lastBooking: Booking | undefined = route.getLastBooking()
-    const possibleConnections: Booking[] = localAllBookings.filter((booking: Booking) =>
+
+    const possibleConnections: Booking[] = bookingsWithoutRouteBookings.filter((booking: Booking) =>
         lastBooking && booking.start === lastBooking.end)
 
-    if (route.length <= lengthOfLongestRoute) {
+    const isLongerRoutePossible: boolean = route.length + possibleConnections.length > lengthOfLongestRoute
+
+    if (!isLongerRoutePossible) {
         return
     }
 
-    if (!possibleConnections.length) {
-        lengthOfLongestRoute = route.length
-        longestRouteIndex = allPossibleRoutes.length
-        allPossibleRoutes.push(route)
-        return
-    } else {
+    if (possibleConnections.length) {
         possibleConnections.forEach((booking: Booking) =>
-        createPossibleRoute(new Route(...route.getAllBookings(), booking), allBookings, allPossibleRoutes))
+            createPossibleRoute(new Route(...route.getAllBookings(), booking), allBookings, allPossibleRoutes))
+        return
     }
+
+    lengthOfLongestRoute = route.length
+    longestRouteIndex = allPossibleRoutes.length
+
+    allPossibleRoutes.push(route)
 }
 
 const tryToConnectRoutes = (allRoutes: Route[]): void => {
@@ -80,7 +84,7 @@ const tryToConnectRoutes = (allRoutes: Route[]): void => {
 
             if (firstBookingOfRouteToConnect.start === lastBookingOfRoute.end) {
                 route.appendMultiple(...routeToConnect.getAllBookings())
-                allRoutes.splice(routeIndex, 1)
+                allRoutes.splice(routeToConnectIndex, 1)
             }
         })
     })
