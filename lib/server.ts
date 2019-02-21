@@ -3,18 +3,22 @@ import route from 'koa-route'
 import bodyParser from 'koa-bodyparser'
 import {performance} from 'perf_hooks'
 
-import { arrangeBookings } from './bookings-arranger'
+import { orderBookings } from './bookings-orderer'
 import logger from './helpers/logger'
 
 const server = new Koa()
 
 server.use(bodyParser())
-server.listen(4000, () => logger.info('Server started on port 4000'))
 
 const orderedBookingsHandler = (ctx: Koa.Context) => {
     const startTime: number = performance.now()
+    const requestData: any = ctx.request.body
 
-    ctx.body = arrangeBookings(ctx.request.body)
+    if (!requestData || !requestData.length) {
+        ctx.throw(400, 'Invalid request')
+    }
+
+    ctx.body = orderBookings(requestData)
 
     const endTime: number = performance.now()
 
@@ -24,5 +28,11 @@ const orderedBookingsHandler = (ctx: Koa.Context) => {
 server.use(route.post('/api/orderedBookings', orderedBookingsHandler))
 
 server.use((ctx: Koa.Context) => {
-    ctx.body = 'Invalid request'
+    ctx.throw(400, 'Invalid request')
 })
+
+if (process.env.NODE_ENV !== 'test') {
+    server.listen(4000, () => logger.info('Server started on port 4000'))
+}
+
+export default server

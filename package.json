@@ -1,10 +1,10 @@
 {
     "name": "booking-ordering",
     "version": "1.0.0",
-    "description": "",
+    "description": "Booking Ordering system written in Node.js using TypeScript and Koa server",
     "license": "MIT",
     "author": "Taavi Kübar",
-    "main": "public/index.js",
+    "main": "public/app.js",
     "dependencies": {
         "koa": "^2.7.0",
         "koa-bodyparser": "^4.2.1",
@@ -18,7 +18,9 @@
         "@types/koa": "^2.0.48",
         "@types/koa-bodyparser": "^4.2.2",
         "@types/koa-route": "^3.2.4",
+        "@types/supertest": "^2.0.7",
         "jest": "^24.1.0",
+        "supertest": "^3.4.2",
         "ts-jest": "^24.0.0",
         "tslint": "^5.12.0",
         "tslint-eslint-rules": "^5.4.0",
@@ -29,10 +31,10 @@
         "compile": "npm run clean && ./node_modules/.bin/tsc",
         "watch": "npm run clean && ./node_modules/.bin/tsc --watch",
         "start": "npm run compile && npm run server",
-        "server": "./node_modules/.bin/nodemon ./public/lib",
+        "server": "./node_modules/.bin/nodemon ./public/lib/server.js",
         "lint": "./node_modules/.bin/tslint ./lib/**/*.{ts,tsx}",
         "test": "npm run test-unit",
         "test-unit": "./node_modules/jest/bin/jest.js",
-        "test-unit-watch": "node node_modules/jest/bin/jest.js --watch"
+        "test-watch": "node node_modules/jest/bin/jest.js --watch"
     }
 }

@@ -7,7 +7,7 @@ import { getAllRoutesIndices, getRoutesAsString } from './helpers/routes-helper'
 let lengthOfLongestRoute: number = 0
 let longestRouteIndex: number = -1
 
-export const arrangeBookings = (data: any): number[] => {
+export const orderBookings = (data: any): number[] => {
     const allRoutes: Route[] = []
     const allBookings: Booking[] = convertInputDataToBookings(data)
 
