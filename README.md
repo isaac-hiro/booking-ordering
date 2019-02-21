@@ -12,22 +12,24 @@ Compile TypeScript files and start the server on port 4000 (with Hot Reload)
 	
 ---
 	
-API Endpoints:
+#### API Endpoints
 
 	http://localhost:4000/api/orderedBookings
 
-POST only
-Accepts an JSON array of Bookings data in the format:
+POST only.
+
+Accepts a JSON array of Bookings data in the format:
 	
 	[
-		{
-			id: number,
-			start: number,
-			end: number
-		}
+	  {
+	    id: number,
+	    start: number,
+	    end: number
+	  }
 	]
 	
 ---
+
 #### Tests
 
 Run all tests
