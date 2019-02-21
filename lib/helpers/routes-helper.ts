@@ -1,17 +1,18 @@
 import Booking from '../models/Booking'
 import Route from '../models/Route'
 
-export const getRouteIndices = (branch: Route): number[] =>
-    branch
+export const getRouteIndices = (route: Route): number[] =>
+    route
         .getAllBookings()
         .map((booking: Booking) => booking.id)
 
 export const getAllRoutesIndices = (routes: Route[]): number[] =>
     routes
-    .map((branch: Route) => getRouteIndices(branch))
+    .map((route: Route) => getRouteIndices(route))
     .reduce((ids: number[], moreIds: number[]) => [...ids, ...moreIds], [])
 
 export const getRoutesAsString = (routes: Route[]): string =>
     routes
-        .map((branch: Route) => branch.toString())
-        .reduce((acc: string, branchString: string) => `${acc} \n${branchString}`, '')
+        .filter((route: Route) => route.length > 0)
+        .map((route: Route) => route.toString())
+        .reduce((acc: string, routeString: string) => `${acc} \n${routeString}`, '')
