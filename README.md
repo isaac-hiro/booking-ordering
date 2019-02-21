@@ -51,17 +51,13 @@ Endpoint responds with an array of ordered bookings id-s:
 
 #### Tests
 
-Run all tests
+Run all unit and integration tests
 
 	npm run test
 	
-Run Unit tests
-
-	npm run test-unit
+Run tests with watch mode
 	
-Run unit tests with watch mode
-	
-	npm run test-unit-watch
+	npm run test-watch
 	
 ---
 #### Coverage
