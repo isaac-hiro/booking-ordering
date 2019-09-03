@@ -32,7 +32,7 @@ Accepts a JSON array of Bookings data in the format:
 
 #### Functionality
 
-Bookings are then ordered in the most optimal way following these rules:
+Bookings are ordered in the most optimal way following these rules:
 
 - Bookings are arranged in a way that they make up a route connecting end points with start points
 - Longest possible route from the first booking is created
@@ -45,7 +45,7 @@ Bookings are then ordered in the most optimal way following these rules:
 
 Endpoint responds with an array of ordered bookings id-s:
 
-	[ 1 , 2, 3 ]
+	[ 1, 2, 3 ]
 
 ---
 
